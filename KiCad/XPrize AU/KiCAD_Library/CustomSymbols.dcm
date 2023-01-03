@@ -1,0 +1,16 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP LLC-Bi_3.3-5V
+D I_D = 0.22A
+F http://cdn.sparkfun.com/datasheets/BreakoutBoards/BSS138.pdf
+$ENDCMP
+#
+$CMP ZVN2110A
+F http://www.redrok.com/MOSFET_ZVN2110A_100V_320mA_4O_Vth2.4_TO-92_ELine.pdf
+$ENDCMP
+#
+$CMP ZVP2110A
+F http://www.redrok.com/MOSFET_ZVN2110A_100V_320mA_4O_Vth2.4_TO-92_ELine.pdf
+$ENDCMP
+#
+#End Doc Library
