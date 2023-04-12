@@ -1,22 +1,101 @@
-# 1 "c:\\Projects\\XPrize-AU\\src\\Arduino\\ServoTest\\ServoTest.ino"
-// Include the Servo library
-# 3 "c:\\Projects\\XPrize-AU\\src\\Arduino\\ServoTest\\ServoTest.ino" 2
-// Declare the Servo pin
-int servoPin = 3;
-// Create a servo object
-Servo Servo1;
-void setup() {
-  // We need to attach the servo to the used pin number
-  Servo1.attach(servoPin);
+# 1 "D:\\Projects\\XPrize-AU\\src\\Arduino\\SBUSServoTest\\SBUSServoTest.ino"
+# 2 "D:\\Projects\\XPrize-AU\\src\\Arduino\\SBUSServoTest\\SBUSServoTest.ino" 2
+# 3 "D:\\Projects\\XPrize-AU\\src\\Arduino\\SBUSServoTest\\SBUSServoTest.ino" 2
+# 4 "D:\\Projects\\XPrize-AU\\src\\Arduino\\SBUSServoTest\\SBUSServoTest.ino" 2
+
+
+
+SBUS sbus(Serial);
+
+unsigned long millisLastSBusUpdate = 0;
+
+const int thrtlePin = 5;
+const int steerPin = 3;
+int throttle = -1;
+int steer = -1;
+
+const int maxSteer = 135;
+const int minSteer = 45;
+
+const float maxThrottleGain = 0.5f;
+const int maxThrottle = 90 * maxThrottleGain;
+
+Servo servoThrottle;
+Servo Steer;
+
+rampInt steerAngle;
+byte previousSteerAngle = 90;
+
+const int minChannel = 364;
+const int maxChannel = 1684;
+
+// Scale the S.BUS channel values into the range [0, 256]
+int getChannel(int channel) {
+  int value = sbus.getChannel(channel);
+
+  int mappedValue = map(value, minChannel, maxChannel, -100, 100);
+
+  return mappedValue;
 }
+
+void updateSteer(bool init = false) {
+  int steerInput = getChannel(1);
+  int targetSteer;
+
+  if (steerInput < -130) {
+    targetSteer = 90;
+  } else {
+    targetSteer = map(steerInput, -100, 100, minSteer, maxSteer);
+  }
+
+  uint32_t duration = 1000. * (float)((steerAngle.getValue() - targetSteer)>0?(steerAngle.getValue() - targetSteer):-(steerAngle.getValue() - targetSteer)) / 80;
+
+  // start with going to the initial position
+  if (init) {
+    steerAngle.go(targetSteer);
+    updateServo();
+    delay(duration);
+    return;
+  }
+
+  if (((targetSteer - previousSteerAngle)>0?(targetSteer - previousSteerAngle):-(targetSteer - previousSteerAngle)) >= 2) {
+    steerAngle.go(targetSteer, duration); // set next ramp interpolation
+    previousSteerAngle = targetSteer; // save previous val
+  }
+
+  Serial.end();
+  Serial.begin(115200);
+  Serial.print(steerInput);
+  Serial.print("\t");
+  Serial.println(targetSteer);
+  Serial.end();
+  sbus.begin(false);
+}
+
+void updateServo() {
+  int val = steerAngle.update(); // update ramp value
+  Steer.write(steerAngle.getValue());
+}
+
+void setup() {
+  sbus.begin(false);
+  servoThrottle.attach(thrtlePin);
+  servoThrottle.write(90);
+  Steer.attach(steerPin);
+  updateSteer(true);
+}
+
 void loop() {
-  // Make servo go to 0 degrees
-  Servo1.write(0);
-  delay(1000);
-  // Make servo go to 90 degrees
-  Servo1.write(90);
-  delay(1000);
-  // Make servo go to 180 degrees
-  Servo1.write(180);
-  delay(1000);
+  if (millis() - millisLastSBusUpdate > 100) {
+    throttle = getChannel(2);
+
+    millisLastSBusUpdate = millis();
+    if (throttle > -130) {
+      servoThrottle.write(map(throttle, -100, 100, 90 - maxThrottle, 90 + maxThrottle));
+    }
+    updateSteer();
+  } else {
+    updateServo();
+    sbus.process();
+  }
 }

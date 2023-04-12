@@ -1,8 +1,8 @@
 {
-    "board": "arduino:avr:mega",
-    "sketch": "src\\Arduino\\ServoTest\\ServoTest.ino",
+    "board": "arduino:avr:nano",
+    "sketch": "src\\Arduino\\SBUSServoTest\\SBUSServoTest.ino",
     "port": "COM6",
     "programmer": "AVR ISP",
     "output": "src/arduino/out",
-    "configuration": "cpu=atmega2560"
+    "configuration": "cpu=atmega328old"
 }
