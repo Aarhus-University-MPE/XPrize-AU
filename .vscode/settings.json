@@ -25,6 +25,7 @@
         "random": "cpp",
         "cstdarg": "cpp",
         "istream": "cpp",
-        "xtr1common": "cpp"
+        "xtr1common": "cpp",
+        "xmemory": "cpp"
     }
 }

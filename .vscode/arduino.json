@@ -1,7 +1,7 @@
 {
     "board": "arduino:avr:nano",
-    "sketch": "src\\Arduino\\SBUSServoTest\\SBUSServoTest.ino",
-    "port": "COM6",
+    "sketch": "src\\Arduino\\Test\\InverterJumpTest\\InverterJumpTest.ino",
+    "port": "COM5",
     "programmer": "AVR ISP",
     "output": "src/arduino/out",
     "configuration": "cpu=atmega328old"

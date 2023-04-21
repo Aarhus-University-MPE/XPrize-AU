@@ -24,15 +24,16 @@ void setup() {
 
 void loop() {
   if (millis() - millisLastSBusUpdate > 1000) {
+    millisLastSBusUpdate = millis();
+
     throttle = getChannel(2);
 
-    millisLastSBusUpdate = millis();
     Serial.end();
     Serial.begin(115200);
     Serial.println(throttle);
     Serial.end();
     sbus.begin(false);
-  } else {
-    sbus.process();
   }
+
+  sbus.process();
 }
