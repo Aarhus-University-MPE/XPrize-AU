@@ -2,15 +2,17 @@
 
 #include <Arduino.h>
 #include <EEPROM.h>
+#include <SBUS.h>
 #include <SD.h>
+#include <SFE_HMC6343.h>
 #include <SPI.h>
 #include <Servo.h>
+#include <SoftwareSerial.h>
 #include <TimeLib.h>
 #include <Wire.h>
+#include <mavlink.h>
 
 // Config
-#include "../../config/commandlist.h"
-#include "../../config/components.h"
 #include "../../config/constants.h"
 #include "../../config/memory.h"
 #include "../../config/pinout.h"
@@ -25,14 +27,11 @@
 #include "./pinconfigs.h"
 
 // System Control
-#include "../system/blackbox.h"
 #include "../system/control.h"
-#include "../system/heartbeat.h"
 #include "../system/logging.h"
 #include "../system/power.h"
 
 // Communication
-#include "../communication/usb.h"
 
 // Debug
 #include "../debug/debug.h"

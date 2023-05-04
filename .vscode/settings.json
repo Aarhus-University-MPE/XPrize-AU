@@ -27,5 +27,11 @@
         "istream": "cpp",
         "xtr1common": "cpp",
         "xmemory": "cpp"
+    },
+    "search.exclude": {
+        // "**/Test/**": true,
+        "**/out/**": true,
+        "**/LabVIEW/**": true,
+        "**/KiCad/**": true
     }
 }

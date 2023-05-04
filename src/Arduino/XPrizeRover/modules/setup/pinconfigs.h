@@ -13,10 +13,10 @@ void InitInterrupts() {
 // Sets pinmode of all pins and writes initial values for outputs
 void InitAllPins() {
   // Motor
-  // digitalWrite(PO_MOTOR_ARM_LEFT, LOW);
-  // digitalWrite(PO_MOTOR_ARM_RIGHT, LOW);
-  // digitalWrite(PO_MOTOR_LATCH_LEFT, LOW);
-  // digitalWrite(PO_MOTOR_LATCH_RIGHT, LOW);
+  digitalWrite(PO_MOTOR_ARM_LEFT, LOW);
+  digitalWrite(PO_MOTOR_ARM_RIGHT, LOW);
+  digitalWrite(PO_MOTOR_LATCH_LEFT, LOW);
+  digitalWrite(PO_MOTOR_LATCH_RIGHT, LOW);
 
   // pinMode(PO_MOTOR_ARM_LEFT, OUTPUT);
   // pinMode(PO_MOTOR_ARM_RIGHT, OUTPUT);

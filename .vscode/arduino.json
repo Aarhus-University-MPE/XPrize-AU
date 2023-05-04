@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:nano",
-    "sketch": "src\\Arduino\\Test\\InverterJumpTest\\InverterJumpTest.ino",
+    "sketch": "src\\Arduino\\Test\\HMCAdvancedTest\\HMCAdvancedTest.ino",
     "port": "COM5",
     "programmer": "AVR ISP",
     "output": "src/arduino/out",

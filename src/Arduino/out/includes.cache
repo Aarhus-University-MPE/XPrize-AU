@@ -2,15 +2,40 @@
   {
     "Sourcefile": null,
     "Include": "",
-    "Includepath": "C:\\Users\\madsr\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.5\\cores\\arduino"
+    "Includepath": "C:\\Users\\au540322\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\cores\\arduino"
   },
   {
     "Sourcefile": null,
     "Include": "",
-    "Includepath": "C:\\Users\\madsr\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.5\\variants\\eightanaloginputs"
+    "Includepath": "C:\\Users\\au540322\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\variants\\eightanaloginputs"
   },
   {
-    "Sourcefile": "D:\\Projects\\XPrize-AU\\src\\Arduino\\out\\sketch\\InverterJumpTest.ino.cpp",
+    "Sourcefile": "C:\\Projects\\XPrize-AU\\src\\Arduino\\out\\sketch\\HMCAdvancedTest.ino.cpp",
+    "Include": "Wire.h",
+    "Includepath": "C:\\Users\\au540322\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\libraries\\Wire\\src"
+  },
+  {
+    "Sourcefile": "C:\\Projects\\XPrize-AU\\src\\Arduino\\out\\sketch\\HMCAdvancedTest.ino.cpp",
+    "Include": "SFE_HMC6343.h",
+    "Includepath": "C:\\Users\\au540322\\Documents\\Arduino\\libraries\\SparkFun_HMC6343\\src"
+  },
+  {
+    "Sourcefile": "C:\\Projects\\XPrize-AU\\src\\Arduino\\out\\sketch\\HMCAdvancedTest.ino.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\au540322\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\libraries\\Wire\\src\\Wire.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\au540322\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\libraries\\Wire\\src\\utility\\twi.c",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\au540322\\Documents\\Arduino\\libraries\\SparkFun_HMC6343\\src\\SFE_HMC6343.cpp",
     "Include": "",
     "Includepath": null
   }

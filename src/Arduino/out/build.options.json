@@ -4,8 +4,8 @@
   "compiler.optimization_flags": "",
   "customBuildProperties": "",
   "fqbn": "arduino:avr:nano:cpu=atmega328old",
-  "hardwareFolders": "C:\\Users\\madsr\\AppData\\Local\\Arduino15\\packages",
-  "otherLibrariesFolders": "C:\\Users\\madsr\\Documents\\Arduino\\libraries",
+  "hardwareFolders": "C:\\Users\\au540322\\AppData\\Local\\Arduino15\\packages",
+  "otherLibrariesFolders": "C:\\Users\\au540322\\Documents\\Arduino\\libraries",
   "runtime.ide.version": "10607",
-  "sketchLocation": "D:\\Projects\\XPrize-AU\\src\\Arduino\\Test\\InverterJumpTest"
+  "sketchLocation": "C:\\Projects\\XPrize-AU\\src\\Arduino\\Test\\HMCAdvancedTest"
 }

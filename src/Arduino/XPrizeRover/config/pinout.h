@@ -17,16 +17,25 @@
 #include "../modules/setup/modules.h"
 
 // Battery Reading
-#define PA_SENSOR_BATT       A0
+#define PA_SENSOR_BATT  A6
 
-// Servo Motors
-#define PO_MOTOR_ARM_LEFT    3
-// #define PO_MOTOR_ARM_RIGHT   3
-#define PO_MOTOR_LATCH_LEFT  4
-#define PO_MOTOR_LATCH_RIGHT 5
+// Outputs
+#define PO_AIRFILTER_EN A0
+#define PO_SYSTEN_EN    4
+#define PO_HEADLIGHT_EN 5
+
+// PWM Signals
+#define PP_ARM_RIGHT    A1
+#define PP_ARM_LEFT     A2
+#define PP_THROTTLE     A3
+#define PP_STEER        6
+#define PP_GEAR         7
+#define PP_LID_LEFT     8
+#define PP_LID_RIGHT    9
 
 // Communication
-#define PO_SPISS_SDCARD      53  // 50 MISO, 51 MOSI, 52 SCK
-// RTC Connection                 I2C SCL, SDA
-
-#define COM_SERIAL_DBG       Serial
+#define PI_TELEM_TX     2
+#define PI_TELEM_RX     3
+#define PO_SPISS_SDCARD 10  // 12 MISO, 11 MOSI, 13 SCK
+#define COM_SBUS        Serial
+// GPS & IMU Connection                 I2C A2 SCL, A4 SDA
