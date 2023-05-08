@@ -13,6 +13,7 @@
 #include <mavlink.h>
 
 // Config
+#include "../../config/commandlist.h"
 #include "../../config/constants.h"
 #include "../../config/memory.h"
 #include "../../config/pinout.h"
@@ -25,18 +26,20 @@
 
 // Initial modules
 #include "./pinconfigs.h"
+#include "./variables.h"
 
 // System Control
+#include "../system/blackbox.h"
 #include "../system/control.h"
-#include "../system/logging.h"
 #include "../system/power.h"
 
 // Communication
 
 // Debug
 #include "../debug/debug.h"
+#include "../debug/usb.h"
 
 // Components
 #include "../components/datarecorder.h"
-#include "../components/motor.h"
+#include "../components/driveTrain.h"
 #include "../components/sdReader.h"

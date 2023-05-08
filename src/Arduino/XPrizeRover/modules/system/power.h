@@ -1,7 +1,7 @@
 /*
   Lake Profiler Power control
 
-  Mads Rosenhøj Jepepsen
+  Mads Rosenhøj Jeppesen
   Aarhus University
   2022
 */
@@ -16,14 +16,17 @@ const float batteryScaleA = 28.722f;
 const float batteryScaleB = -617.39f;
 const float batteryOffset = 3318.3f;
 
+const float minVoltage = 10.0f;
+const float maxVoltage = 18.0f;
+
 const float batteryVoltageOffset = 0.1f;
 
 int BatteryLevel() {
   float batteryVoltage = BatteryVoltage();
 
   // Check over/under charged
-  if (batteryVoltage < BATTERY_VOLTAGE_MIN) return 0;
-  if (batteryVoltage > BATTERY_VOLTAGE_MAX) return 100;
+  if (batteryVoltage < minVoltage) return 0;
+  if (batteryVoltage > maxVoltage) return 100;
 
   float batteryLevel = batteryScaleA * batteryVoltage * batteryVoltage + batteryScaleB * batteryVoltage + batteryOffset;
 
@@ -58,19 +61,6 @@ float BatteryVoltage() {
 // Returns current battery status > minimum battery level
 bool BatteryStatus() {
   return VoltageCheck();
-}
-
-// Returns minimum battery level from EEPROM
-uint8_t GetBatteryMinLevel() {
-  return EEPROM_READ_INT(MEMADDR_BATTERY_MIN);
-}
-
-// Sets EEPROM minimum battery level
-void SetBatteryMinLevel(uint8_t batteryLevel) {
-  DEBUG_PRINT(F("Setting min battery level: "));
-  DEBUG_PRINT(batteryLevel);
-  DEBUG_PRINTLN(F(" %"));
-  EEPROM_WRITE_INT(MEMADDR_BATTERY_MIN, batteryLevel);
 }
 
 bool BatteryStatus(bool print) {

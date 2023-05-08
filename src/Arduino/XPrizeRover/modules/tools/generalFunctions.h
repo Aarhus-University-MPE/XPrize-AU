@@ -37,15 +37,6 @@ void appendCsv(char* s) {
   s[len + 5] = '\0';
 }
 
-unsigned long ToLong(bool b[]) {
-  unsigned long c = 0;
-  for (int i = 0; i < MODULE_COUNT; ++i) {
-    if (b[i])
-      c |= 1L << i;
-  }
-  return c;
-}
-
 union unpack {
   uint8_t i8;
   int i;

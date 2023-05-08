@@ -1,7 +1,7 @@
 {
     "board": "arduino:avr:nano",
-    "sketch": "src\\Arduino\\Test\\HMCAdvancedTest\\HMCAdvancedTest.ino",
-    "port": "COM5",
+    "sketch": "src\\Arduino\\Test\\PCB\\SBUSTest\\SBUSTest.ino",
+    "port": "COM6",
     "programmer": "AVR ISP",
     "output": "src/arduino/out",
     "configuration": "cpu=atmega328old"

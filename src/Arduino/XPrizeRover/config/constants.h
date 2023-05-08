@@ -1,9 +1,9 @@
 /*
-  Lake Profiler system constants
+  XPrize Rover system constants
 
-  Mads Rosenhøj Jepepsen
+  Mads Rosenhøj Jeppesen
   Aarhus University
-  2021
+  2023
 */
 
 #pragma once
@@ -74,51 +74,28 @@
 #define RECEIVE_CMDS()
 #endif
 
-#define ToBoolString(m)       ((m) == 1 ? "T" : ((m) == 0 ? "F" : "Unknown"))
+#define ToBoolString(m)     ((m) == 1 ? "T" : ((m) == 0 ? "F" : "Unknown"))
 // ------------------------------------------------------------ //
 //                           SYSTEM                             //
 // ------------------------------------------------------------ //
-#define SystemVersion         "0.0.1"
+#define SystemVersion       "0.0.1"
 
 // ------------------------------------------------------------ //
 //                            MOTOR                             //
 // ------------------------------------------------------------ //
 
-#define MOTOR_LEFT_ARM        0  //
-#define MOTOR_RIGHT_ARM       1  //
-#define MOTOR_LEFT_LATCH      2  //
-#define MOTOR_RIGHT_LATCH     3  //
-
 // ------------------------------------------------------------ //
 //                           BATTERY                            //
 // ------------------------------------------------------------ //
 
-#define BATTERY_MIN_LEVEL     50
+#define BATTERY_MIN_LEVEL   50
 
-#define BATTERY_VOLTAGE_MIN   10.7f
-#define BATTERY_VOLTAGE_MAX   12.6f
+#define BATTERY_VOLTAGE_MIN 10.7f
+#define BATTERY_VOLTAGE_MAX 12.6f
 
 // ------------------------------------------------------------ //
 //                        COMMUNICATION                         //
 // ------------------------------------------------------------ //
 
-// Buttons
-#define BTN_DEBOUNCE_TIME     500
-#define ESTOP_DEBOUNCE_TIME   1000
-
 // DEBUG
-#define DEBUG_BAUDRATE        115200
-
-// Canister Comm (RS232)
-#define CANISTER_BAUDRATE     19200
-#define LOGGING_START_TIMEOUT 3000000
-
-// LORA
-#define COM_LORA_BAUDRATE     9600
-#define LORA_FREQUENCY        434.0
-#define CLIENT_ADDRESS        1
-#define SERVER_ADDRESS        2
-#define MAX_LORA_BROADCAST    10
-#define LORA_BROADCAST_DELAY  5000
-#define LORA_HEARTBEAT_PERIOD 900000L  // 15 min
-#define LORA_ACTIVE           true
+#define DEBUG_BAUDRATE      115200

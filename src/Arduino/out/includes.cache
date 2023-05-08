@@ -2,40 +2,65 @@
   {
     "Sourcefile": null,
     "Include": "",
-    "Includepath": "C:\\Users\\au540322\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\cores\\arduino"
+    "Includepath": "C:\\Users\\madsr\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.5\\cores\\arduino"
   },
   {
     "Sourcefile": null,
     "Include": "",
-    "Includepath": "C:\\Users\\au540322\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\variants\\eightanaloginputs"
+    "Includepath": "C:\\Users\\madsr\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.5\\variants\\eightanaloginputs"
   },
   {
-    "Sourcefile": "C:\\Projects\\XPrize-AU\\src\\Arduino\\out\\sketch\\HMCAdvancedTest.ino.cpp",
-    "Include": "Wire.h",
-    "Includepath": "C:\\Users\\au540322\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\libraries\\Wire\\src"
+    "Sourcefile": "D:\\Projects\\XPrize-AU\\src\\Arduino\\out\\sketch\\SBUSTest.ino.cpp",
+    "Include": "SBUS.h",
+    "Includepath": "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\SBUS"
   },
   {
-    "Sourcefile": "C:\\Projects\\XPrize-AU\\src\\Arduino\\out\\sketch\\HMCAdvancedTest.ino.cpp",
-    "Include": "SFE_HMC6343.h",
-    "Includepath": "C:\\Users\\au540322\\Documents\\Arduino\\libraries\\SparkFun_HMC6343\\src"
+    "Sourcefile": "D:\\Projects\\XPrize-AU\\src\\Arduino\\out\\sketch\\SBUSTest.ino.cpp",
+    "Include": "Servo.h",
+    "Includepath": "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\Servo\\src"
   },
   {
-    "Sourcefile": "C:\\Projects\\XPrize-AU\\src\\Arduino\\out\\sketch\\HMCAdvancedTest.ino.cpp",
+    "Sourcefile": "D:\\Projects\\XPrize-AU\\src\\Arduino\\out\\sketch\\SBUSTest.ino.cpp",
     "Include": "",
     "Includepath": null
   },
   {
-    "Sourcefile": "C:\\Users\\au540322\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\libraries\\Wire\\src\\Wire.cpp",
+    "Sourcefile": "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\SBUS\\SBUS.cpp",
     "Include": "",
     "Includepath": null
   },
   {
-    "Sourcefile": "C:\\Users\\au540322\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.6\\libraries\\Wire\\src\\utility\\twi.c",
+    "Sourcefile": "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\Servo\\src\\avr\\Servo.cpp",
     "Include": "",
     "Includepath": null
   },
   {
-    "Sourcefile": "C:\\Users\\au540322\\Documents\\Arduino\\libraries\\SparkFun_HMC6343\\src\\SFE_HMC6343.cpp",
+    "Sourcefile": "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\Servo\\src\\mbed\\Servo.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\Servo\\src\\megaavr\\Servo.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\Servo\\src\\nrf52\\Servo.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\Servo\\src\\sam\\Servo.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\Servo\\src\\samd\\Servo.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\Servo\\src\\stm32f4\\Servo.cpp",
     "Include": "",
     "Includepath": null
   }

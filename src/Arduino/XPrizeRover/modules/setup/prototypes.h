@@ -10,8 +10,6 @@
 
 #include "./modules.h"
 
-void ModeSwitchInterrupt();
-
 // System
 void (*systemReset)(void) = 0;
 void InitAllPins();
@@ -19,17 +17,6 @@ void InitButtons();
 void InitMode();
 void InitStrategyMethods();
 unsigned long ToLong(bool b[]);
-
-enum Motor {
-  Left_Arm    = 0,
-  Right_Arm   = 1,
-  Left_Latch  = 2,
-  Right_Latch = 3
-};
-uint8_t MotorPin[4] = {PO_MOTOR_ARM_LEFT,
-                       PO_MOTOR_ARM_RIGHT,
-                       PO_MOTOR_LATCH_LEFT,
-                       PO_MOTOR_LATCH_RIGHT};
 
 // USB Comm
 bool DebugCommStatus();
@@ -46,127 +33,6 @@ void parseCommandPower();
 void parseCommandLogging();
 void parseCommandSample();
 void CountDownPrint();
-const byte numChars = 200;
-
-// Canister Comm
-void recvWithStartEndMarkersCanister();
-void CanisterLogStart();
-void CanisterLogRead();
-bool InitializeCanister();
-bool CanisterCommStatus();
-void parseCommandCan(uint8_t size);
-
-// Strategies
-void StartStrategySystemTest();
-void RunStrategySystemTest();
-void FinishStrategySystemTest();
-void SelectFunctionSystemTest();
-
-void StartStrategyAutonomous();
-void RunStrategyAutonomous();
-void FinishStrategyAutonomous();
-void SelectFunctionAutonomous();
-
-void StartStrategyService();
-void RunStrategyService();
-void FinishStrategyService();
-void SelectFunctionService();
-
-// Mode switchers
-boolean SetMode();
-byte GetMode();
-void ModeUpdater();
-
-// Motors
-void MotorMove(byte dir);
-byte GetMotorState();
-bool MotorStatus();
-bool MotorPositionReached(uint8_t dir);
-bool MotorPositionReached();
-bool MotorPositionReachedEncoder(uint8_t dir);
-bool MotorPositionReachedTimeEncoder(uint8_t dir);
-void MotorSetPos();
-int GetEncoderMode();
-float GetTimeEncoderMotorSpeed();
-void SetTimeEncoderMotorSpeed(float speed);
-
-// Encoder
-void EncoderAInterrupt();
-void EncoderBInterrupt();
-void EncoderZInterrupt();
-
-void EncoderActivate();
-
-int GetEncoderRotations();
-int GetEncoderCount();
-
-int GetEncoderRotationsTop();
-int GetEncoderRotationsService();
-int GetEncoderRotationsBottom();
-
-int GetEncoderCountTop();
-int GetEncoderCountService();
-int GetEncoderCountBottom();
-
-void SetEncoderRotationsTop(int value);
-void SetEncoderRotationsBottom(int value);
-
-void SetEncoderCountTop(int value);
-void SetEncoderCountBottom(int value);
-
-void SetEncoderTop();
-void SetEncoderBottom();
-void SetEncoderDepth(float depth);
-void SetEncoderServiceDepth(float depth);
-void EEPROMSetMotorPos();
-
-void EncoderPrintPos();
-void EncoderPrintPos(uint8_t direction);
-bool EncoderWithinLimits();
-void EEPROMGetMotorPos();
-
-int GetEncoderPosition();
-int GetEncoderPositionTop();
-int GetEncoderPositionBottom();
-int GetEncoderPositionService();
-
-// Time Encoder
-unsigned long GetTimeEncoderPosition();
-unsigned long GetTimeEncoderTop();
-unsigned long GetTimeEncoderBottom();
-unsigned long GetTimeEncoderService();
-
-int GetTimeMotorDirection();
-
-void TimeEncoderActivate();
-void TimeEncoderStart(uint8_t dir);
-void TimeEncoderUpdate();
-
-void UpdateMotorCompensation(uint8_t dir);
-void SetTimeEncoderCompensationScale(float scale);
-float GetTimeEncoderCompensationScale();
-
-unsigned long GetTargetTimePosition(uint8_t dir);
-
-void SetTimeEncoderTop();
-void SetTimeEncoderBottom(unsigned long value);
-void SetTimeEncoderService(unsigned long value);
-void SetTimeEncoderBottom();
-
-void SetTimeEncoderDepth(float depth);
-void SetTimeEncoderServiceDepth(float depth);
-
-void EEPROMSetTimeMotorPos();
-void EEPROMGetTimeMotorPos();
-
-void TimeEncoderPrintPos();
-void TimeEncoderPrintPos(uint8_t direction);
-
-void SetDepthSensorTopPosition(int topDepth);
-long GetDepthSensorTopPosition();
-
-void TimeEncoderPrintTarget(uint8_t dir);
-unsigned long GetTimeEncoderTarget(uint8_t dir);
 
 // Power
 bool VoltageCheck();
@@ -177,34 +43,6 @@ uint8_t GetBatteryMinLevel();
 int BatteryLevel();
 uint8_t BatteryLevelHex();
 uint8_t BatteryVoltageHex();
-
-// System Status
-bool SystemStatus[MODULE_COUNT];
-
-bool GetStatus(int module) {
-  return SystemStatus[module];
-}
-
-void SetStatus(int module, bool status) {
-  SystemStatus[module] = status;
-}
-
-void SetStatus(bool status) {
-  for (int i = 0; i < MODULE_COUNT; i++) {
-    SystemStatus[i] = status;
-  }
-
-  SystemStatus[MODULE_RESERVED] = true;
-}
-
-bool SystemCheck(int mode);
-void SystemCheck();
-
-void ModuleEnableMode(int mode);
-void ModuleEnableMode();
-
-void ModuleEnable();
-void ModuleEnable(uint8_t module);
 
 // SD Reader
 bool SDReaderStatus();

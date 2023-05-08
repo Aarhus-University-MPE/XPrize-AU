@@ -1,5 +1,5 @@
 /*
-  Lake Profiler system pinout
+  XPrize Rover system pinout
 
   Naming pattern (all uppercase):
   P   + <I:input, T: interrupt input, A:analog input, O:output, P:pwm output>_
@@ -7,9 +7,9 @@
     + <purpose>_
     + <where applicable: left, right, top, bottom, position etc...>
 
-  Mads Rosenhøj Jepepsen
+  Mads Rosenhøj Jeppesen
   Aarhus University
-  2021
+  2023
 */
 
 #pragma once
@@ -18,6 +18,7 @@
 
 // Battery Reading
 #define PA_SENSOR_BATT  A6
+#define PI_POWER_FLAG   A7
 
 // Outputs
 #define PO_AIRFILTER_EN A0
@@ -38,4 +39,6 @@
 #define PI_TELEM_RX     3
 #define PO_SPISS_SDCARD 10  // 12 MISO, 11 MOSI, 13 SCK
 #define COM_SBUS        Serial
+#define COM_SERIAL_DBG  Serial
+
 // GPS & IMU Connection                 I2C A2 SCL, A4 SDA

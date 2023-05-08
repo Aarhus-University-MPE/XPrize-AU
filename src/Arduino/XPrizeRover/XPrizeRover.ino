@@ -2,7 +2,7 @@
   XPrize Rover mainframe
   - Manages primary systems
 
-  Mads Rosenhøj Jepepsen
+  Mads Rosenhøj Jeppesen
   Aarhus University
   2023
 */
@@ -10,7 +10,8 @@
 #include "./modules/setup/modules.h"
 
 void setup() {
-  InitializeDebugComm();
+  // Serial Communication
+  DBG_ONLY(InitializeDebugComm());
 
   delay(150);
 
@@ -18,12 +19,10 @@ void setup() {
   InitAllPins();
 
   delay(150);
-
-  InitializeMotors();
   DEBUG_PRINTLN(F("Initialized!"));
 }
 
 void loop() {
   // USB debug commands
-  // DBG_ONLY(recvWithStartEndMarkers());
+  DBG_ONLY(recvWithStartEndMarkers());
 }
