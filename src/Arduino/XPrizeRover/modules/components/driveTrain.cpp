@@ -12,13 +12,13 @@
 
 Servo Throttle, Steer, Gear;
 
-const uint8_t maxSteer = 135;
-const uint8_t minSteer = 45;
+const uint8_t maxSteer = 180;
+const uint8_t minSteer = 0;
 
 uint8_t lastSteer = 89;
 
-const float maxThrottleGain        = 0.5f;
-const uint8_t maxThrottleIncrement = 90 * 0.5f;
+const float maxThrottleGain        = 1.0f;
+const uint8_t maxThrottleIncrement = 90 * maxThrottleGain;
 
 unsigned long lastMillisSteer, lastMillisThrottle, lastMillisGear;
 

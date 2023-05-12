@@ -34,16 +34,16 @@ int32_t GnssGetLong() {
 }
 
 uint8_t GnssGetSIV() {
-  return gnss.getSIV();
+  return gnss.getSIV(10);
 }
 
 uint8_t GnssGetFixType() {
-  return gnss.getFixType();
+  return gnss.getFixType(10);
 }
 
 float GnssGetHeading() {
   // int32_t headingInt = gnss.getHeadVeh();  // x 10^-5
-  int32_t headingInt = gnss.getHeading();  // x 10^-5
+  int32_t headingInt = gnss.getHeading(10);  // x 10^-5
 
   float heading = headingInt / 100000.0f;
   return heading;

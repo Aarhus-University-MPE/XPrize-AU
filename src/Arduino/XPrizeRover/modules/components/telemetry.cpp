@@ -45,19 +45,20 @@ void sendMsg(mavlink_message_t* msg) {
 }
 
 // Broadcast Standard Heartbeat
-void MavHeartbeat() {
-  if (millis() - millisMavHeartbeat < MAVLINK_PERIOD_HRTBEAT) return;
+bool MavHeartbeat() {
+  if (millis() - millisMavHeartbeat < MAVLINK_PERIOD_HRTBEAT) return false;
   millisMavHeartbeat = millis();
   mavlink_message_t msg;
 
   // Bundle and send data
   mavlink_msg_heartbeat_pack(sysid, compid, &msg, type, autopilot_type, system_mode, 0, system_state);
   sendMsg(&msg);
+  return true;
 }
 
 // Broadcast Battery Data
-void MavBattery() {
-  if (millis() - millisMavBattery < MAVLINK_PERIOD_BATTERY) return;
+bool MavBattery() {
+  if (millis() - millisMavBattery < MAVLINK_PERIOD_BATTERY) return false;
   millisMavBattery = millis();
   mavlink_message_t msg;
 
@@ -69,11 +70,12 @@ void MavBattery() {
   // Bundle and send data
   mavlink_msg_sys_status_pack(sysid, compid, &msg, 0, 0, 0, 0, voltage, currentDraw, batteryLevel, 0, 0, 0, 0, 0, 0);
   sendMsg(&msg);
+  return true;
 }
 
 // Broadcast GNSS Data (Position)
-void MavGnss() {
-  if (millis() - millisMavGnss < MAVLINK_PERIOD_GNSS) return;
+bool MavGnss() {
+  if (millis() - millisMavGnss < MAVLINK_PERIOD_GNSS) return false;
   millisMavGnss = millis();
   mavlink_message_t msg;
 
@@ -84,11 +86,12 @@ void MavGnss() {
   // Broadcast GNSS positional data
   mavlink_msg_global_position_int_pack(sysid, compid, &msg, millis(), lat, lon, 0, 0, 0, 0, 0, 0);
   sendMsg(&msg);
+  return true;
 }
 
 // Broadcast GNSS Data (Satellite, fixtype)
-void MavGnssData() {
-  if (millis() - millisMavGnssData < MAVLINK_PERIOD_GNSSDATA) return;
+bool MavGnssData() {
+  if (millis() - millisMavGnssData < MAVLINK_PERIOD_GNSSDATA) return false;
 
   millisMavGnssData = millis();
   mavlink_message_t msg;
@@ -100,11 +103,12 @@ void MavGnssData() {
   // Broadcast GNSS signal data
   mavlink_msg_gps_raw_int_pack(sysid, compid, &msg, 0, fix_type, 0, 0, 0, 65535, 65535, 0, 65535, satellites_visible);
   sendMsg(&msg);
+  return true;
 }
 
 // Broadcast Heading Data
-void MavHeading() {
-  if (millis() - millisMavHeading < MAVLINK_PERIOD_HEADING) return;
+bool MavHeading() {
+  if (millis() - millisMavHeading < MAVLINK_PERIOD_HEADING) return false;
   millisMavHeading = millis();
   mavlink_message_t msg;
 
@@ -115,23 +119,24 @@ void MavHeading() {
   // Broadcast IMU signal data
   mavlink_msg_attitude_pack(sysid, compid, &msg, millis(), 0.0f, 0.0f, DEG_TO_RAD * heading, 0, 0, 0);
   sendMsg(&msg);
+  return true;
 }
 
 // Process Telemetry Communication
 void TelemetryProcess() {
 #ifdef MAV_HEARTBEAT
-  MavHeartbeat();
+  if (MavHeartbeat()) return;
 #endif
 #ifdef MAV_BATTERY
-  MavBattery();
+  if (MavBattery()) return;
 #endif
 #ifdef MAV_GNSS
-  MavGnss();
+  if (MavGnss()) return;
 #endif
 #ifdef MAV_GNSSDATA
-  MavGnssData();
+  if (MavGnssData()) return;
 #endif
 #ifdef MAV_HEADING
-  MavHeading();
+  if (MavHeading()) return;
 #endif
 }

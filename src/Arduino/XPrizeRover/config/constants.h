@@ -87,6 +87,7 @@
 #define SBUS_TIMEOUT            5000  // milliseconds
 #define SBUS_PERIOD             100   // milliseconds between SBUS updates
 #define POWERFLAG_PERIOD        500   // milliseconds between power flag checks
+#define POWERFLAG_TOGGLE        400   // milliseconds after power flag has been toggled to enable/disable power
 
 // Controller Channels
 #define CHANNEL_STEER           1  // Right Horizontal
