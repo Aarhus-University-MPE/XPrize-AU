@@ -15,10 +15,10 @@
 // ------------------------------------------------------------ //
 
 // Debug configuration flag - Comment out to unset
-#define DEBUG_BLACKBOX_AND_PRINT
+// #define DEBUG_BLACKBOX_AND_PRINT
 // #define DEBUG_BLACKBOX
 // #define DEBUG_SERIAL
-// #define DEBUG_NONE
+#define DEBUG_NONE
 
 // Executes if DEBUG flag is set.
 #if defined(DEBUG_BLACKBOX_AND_PRINT)
@@ -74,28 +74,58 @@
 #define RECEIVE_CMDS()
 #endif
 
-#define ToBoolString(m)     ((m) == 1 ? "T" : ((m) == 0 ? "F" : "Unknown"))
+#define ToBoolString(m)         ((m) == 1 ? "T" : ((m) == 0 ? "F" : "Unknown"))
 // ------------------------------------------------------------ //
 //                           SYSTEM                             //
 // ------------------------------------------------------------ //
-#define SystemVersion       "0.0.1"
+#define SystemVersion           "0.0.1"
 
 // ------------------------------------------------------------ //
-//                            MOTOR                             //
+//                         CONTROLLER                           //
 // ------------------------------------------------------------ //
+
+#define SBUS_TIMEOUT            5000  // milliseconds
+#define SBUS_PERIOD             100   // milliseconds between SBUS updates
+#define POWERFLAG_PERIOD        500   // milliseconds between power flag checks
+
+// Controller Channels
+#define CHANNEL_STEER           1  // Right Horizontal
+#define CHANNEL_THROTTLE        2  // Left Vertical
+#define CHANNEL_SWAPPER_ARM     3  // Right Vertical
+#define CHANNEL_SWAPPER_SELECT  5  // A or D Short press, reset with B Short Press
+#define CHANNEL_SWAPPER_LID     6  // CAM (Trigger) Short press
+#define CHANNEL_GEAR            7  // C Long Press
+#define CHANNEL_SLEEP           8  // Home Long Press
+#define CHANNEL_HEADLIGHTS      9  // C Short Press
+
+#define SBUS_SIGNAL_HIGH        800
 
 // ------------------------------------------------------------ //
 //                           BATTERY                            //
 // ------------------------------------------------------------ //
 
-#define BATTERY_MIN_LEVEL   50
-
-#define BATTERY_VOLTAGE_MIN 10.7f
-#define BATTERY_VOLTAGE_MAX 12.6f
+#define BATTERY_VOLTAGE_MIN     16.97f  // Count as 0% when below this voltage
+#define BATTERY_VOLTAGE_MAX     18.06f  // Count as 100% when above this voltage
 
 // ------------------------------------------------------------ //
 //                        COMMUNICATION                         //
 // ------------------------------------------------------------ //
 
 // DEBUG
-#define DEBUG_BAUDRATE      115200
+#define DEBUG_BAUDRATE          115200
+
+// Mavlink
+#define MAVLINK_BAUDRATE        115200
+
+#define MAVLINK_PERIOD_GNSS     3000
+#define MAVLINK_PERIOD_GNSSDATA 3000
+#define MAVLINK_PERIOD_HRTBEAT  1000
+#define MAVLINK_PERIOD_BATTERY  2000
+#define MAVLINK_PERIOD_HEADING  3000
+
+// Comment to disable MAVLink messages
+#define MAV_HEARTBEAT           1
+#define MAV_BATTERY             1
+#define MAV_GNSS                1
+#define MAV_GNSSDATA            1
+#define MAV_HEADING             1

@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:nano",
-    "sketch": "src\\Arduino\\Test\\PCB\\SBUSTest\\SBUSTest.ino",
+    "sketch": "src\\Arduino\\XPrizeRover\\XPrizeRover.ino",
     "port": "COM6",
     "programmer": "AVR ISP",
     "output": "src/arduino/out",

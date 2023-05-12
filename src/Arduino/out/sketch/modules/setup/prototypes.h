@@ -1,0 +1,69 @@
+#line 1 "D:\\Projects\\XPrize-AU\\src\\Arduino\\XPrizeRover\\modules\\setup\\prototypes.h"
+/*
+  XPrize Rover Function Templates protocols
+
+  Mads Rosenhøj Jeppesen
+  Aarhus University
+  2021
+*/
+
+#pragma once
+
+#include "./modules.h"
+
+// System
+void (*systemReset)(void) = 0;
+void InitAllPins();
+void PowerFlagProcess();
+void SystemEnableSecondary();
+void SystemDisableSecondary();
+bool GetSystemState();
+
+// Drivetrain
+void DriveTrainInitialize();
+void DriveTrainTerminate();
+void DriveTrainProcess(int8_t throttle, int8_t steer, int8_t gear, int8_t headlights);
+
+// Swapper
+void SwapperInitialize();
+void SwapperTerminate();
+void SwapperProcess(int8_t select, int8_t arm, int8_t lid);
+
+// SBUS
+void SbusInitialize();
+void SbusTerminate();
+void SbusProcess();
+
+// Telemetry
+void TelemetryInitialize();
+void TelemetryTerminate();
+void TelemetryProcess();
+
+// GNSS
+void GnssTerminate();
+void GnssInitialize();
+int32_t GnssGetLat();
+int32_t GnssGetLong();
+uint8_t GnssGetSIV();
+uint8_t GnssGetFixType();
+float GnssGetHeading();
+
+// IMU
+void ImuInitialize();
+void ImuTerminate();
+float ImuHeading();
+
+// USB Comm
+bool DebugCommInitialize();
+
+// Power
+uint8_t BatteryLevel();
+float BatteryVoltage();
+void BatteryPrint();
+
+// Servo Driver
+unsigned long ServoProcess(Servo &servo, uint8_t angle, uint8_t servoPin, uint8_t lastAngle, unsigned long lastMillis);
+void ServoProcess(Servo &servo, uint8_t angle, int servoPin);
+
+// SD Reader
+void SDReaderInitialize();

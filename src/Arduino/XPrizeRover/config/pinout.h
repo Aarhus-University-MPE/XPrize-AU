@@ -22,7 +22,7 @@
 
 // Outputs
 #define PO_AIRFILTER_EN A0
-#define PO_SYSTEN_EN    4
+#define PO_SYSTEM_EN    4
 #define PO_HEADLIGHT_EN 5
 
 // PWM Signals
@@ -35,8 +35,8 @@
 #define PP_LID_RIGHT    9
 
 // Communication
-#define PI_TELEM_TX     2
-#define PI_TELEM_RX     3
+#define PT_TELEM_TX     2
+#define PR_TELEM_RX     3
 #define PO_SPISS_SDCARD 10  // 12 MISO, 11 MOSI, 13 SCK
 #define COM_SBUS        Serial
 #define COM_SERIAL_DBG  Serial

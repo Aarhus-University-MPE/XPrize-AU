@@ -16,8 +16,8 @@ int steer           = -1;
 const int maxSteer = 135;
 const int minSteer = 45;
 
-const float maxThrottleGain = 0.5f;
-const int maxThrottleIncrement       = 90 * maxThrottleGain;
+const float maxThrottleGain    = 0.5f;
+const int maxThrottleIncrement = 90 * maxThrottleGain;
 
 Servo servoThrottle;
 Servo Steer;

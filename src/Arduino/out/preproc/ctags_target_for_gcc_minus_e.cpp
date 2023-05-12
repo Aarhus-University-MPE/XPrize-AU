@@ -1,76 +1,36 @@
-# 1 "D:\\Projects\\XPrize-AU\\src\\Arduino\\Test\\PCB\\SBUSTest\\SBUSTest.ino"
-# 2 "D:\\Projects\\XPrize-AU\\src\\Arduino\\Test\\PCB\\SBUSTest\\SBUSTest.ino" 2
-# 3 "D:\\Projects\\XPrize-AU\\src\\Arduino\\Test\\PCB\\SBUSTest\\SBUSTest.ino" 2
+# 1 "D:\\Projects\\XPrize-AU\\src\\Arduino\\XPrizeRover\\XPrizeRover.ino"
+/*
 
-SBUS sbus(Serial);
+  XPrize Rover mainframe
 
-unsigned long millisLastSBusUpdate = 0;
+  - Manages primary systems
 
-const int thrtlePin = A3;
-const int powerFlagPin = A7;
-const int steerPin = 6;
-const int systemEnPin = 4;
 
-int throttle = -1;
-int steer = -1;
 
-const int maxSteer = 135;
-const int minSteer = 45;
+  Mads Rosenhøj Jeppesen
 
-const float maxThrottleGain = 0.5f;
-const int maxThrottleIncrement = 90 * maxThrottleGain;
+  Aarhus University
 
-Servo ThrottlePWM;
-Servo SteerPWM;
+  2023
 
-const int minChannel = 364;
-const int maxChannel = 1684;
-
-// Scale the S.BUS channel values into the range [-100, 100]
-int getChannel(int channel) {
-  int value = sbus.getChannel(channel);
-
-  int mappedValue = map(value, minChannel, maxChannel, -100, 100);
-
-  return mappedValue;
-}
+*/
+# 10 "D:\\Projects\\XPrize-AU\\src\\Arduino\\XPrizeRover\\XPrizeRover.ino"
+# 11 "D:\\Projects\\XPrize-AU\\src\\Arduino\\XPrizeRover\\XPrizeRover.ino" 2
 
 void setup() {
-  sbus.begin(false);
-  ThrottlePWM.attach(thrtlePin);
-  SteerPWM.attach(steerPin);
+  // System initialization
+  SystemEnablePrimary();
 
-  ThrottlePWM.write(90);
-  SteerPWM.write(90);
-
-  // Power On system
-  pinMode(systemEnPin, 0x1);
-  pinMode(powerFlagPin, 0x0);
-  pinMode(13, 0x1);
-
-  digitalWrite(systemEnPin, false);
+  delay(150);
 }
 
 void loop() {
-  sbus.process();
+  PowerFlagProcess();
 
-  if (millis() - millisLastSBusUpdate > 100) {
-    millisLastSBusUpdate = millis();
-    bool powerFlag = analogRead(powerFlagPin) > 300;
+  // Check system online
+  if (!GetSystemState()) return;
 
-    if (powerFlag != digitalRead(systemEnPin)) {
-      digitalWrite(systemEnPin, powerFlag);
-      digitalWrite(13, powerFlag);
-    }
-
-    // Read and convert SBUS values to drivetrain parameters
-    steer = map(getChannel(1), -100, 100, minSteer, maxSteer);
-    throttle = map(getChannel(2), -100, 100, 90 - maxThrottleIncrement, 90 + maxThrottleIncrement);
-
-    // Check for valid signal
-    if (throttle > -130) {
-      ThrottlePWM.write(throttle);
-      SteerPWM.write(steer);
-    }
-  }
+  // Process secondary system
+  SbusProcess();
+  TelemetryProcess();
 }

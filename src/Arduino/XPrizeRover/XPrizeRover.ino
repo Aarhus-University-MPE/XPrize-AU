@@ -10,19 +10,19 @@
 #include "./modules/setup/modules.h"
 
 void setup() {
-  // Serial Communication
-  DBG_ONLY(InitializeDebugComm());
-
-  delay(150);
-
   // System initialization
-  InitAllPins();
+  SystemEnablePrimary();
 
   delay(150);
-  DEBUG_PRINTLN(F("Initialized!"));
 }
 
 void loop() {
-  // USB debug commands
-  DBG_ONLY(recvWithStartEndMarkers());
+  PowerFlagProcess();
+
+  // Check system online
+  if (!GetSystemState()) return;
+
+  // Process secondary system
+  SbusProcess();
+  TelemetryProcess();
 }

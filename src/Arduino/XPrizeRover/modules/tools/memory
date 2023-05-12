@@ -1,0 +1,19 @@
+No GNSS
+Sketch uses 19510 bytes (63%) of program storage space. Maximum is 30720 bytes.
+Global variables use 1379 bytes (67%) of dynamic memory, leaving 669 bytes 
+
+Stock ublox GNSS library
+Sketch uses 44464 bytes (144%) of program storage space. Maximum is 30720 bytes.
+Global variables use 1871 bytes (91%) of dynamic memory, leaving 669 bytes 
+
+With GNSS
+Sketch uses 29692 bytes (96%) of program storage space. Maximum is 30720 bytes.
+Global variables use 1872 bytes (91%) of dynamic memory, leaving 176 bytes 
+
+With SIV
+Sketch uses 30186 bytes (98%) of program storage space. Maximum is 30720 bytes.
+Global variables use 1872 bytes (91%) of dynamic memory, leaving 176 bytes 
+
+No SD Library
+Sketch uses 26312 bytes (85%) of program storage space. Maximum is 30720 bytes.
+Global variables use 1862 bytes (90%) of dynamic memory, leaving 186 
