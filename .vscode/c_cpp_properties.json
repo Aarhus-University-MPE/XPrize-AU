@@ -12,7 +12,8 @@
                 "C:\\Program Files (x86)\\Arduino\\libraries\\**",
                 "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\**",
                 "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\**",
-                "C:/Users/au540322/Documents/Arduino/libraries"
+                "C:/Users/madsr/Documents/Arduino/libraries/**",
+                "C:/Users/au540322/Documents/Arduino/libraries/**"
             ],
             "forcedInclude": [
                 "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
@@ -45,7 +46,7 @@
                 "C:\\Users\\madsr\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.5\\libraries\\Wire\\src",
                 "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\Servo\\src",
                 "C:\\Users\\madsr\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.5\\libraries\\SoftwareSerial\\src",
-                "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\SparkFun_u-blox_GNSS_Arduino_Library\\src",
+                "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\Sparkfun_u-blox_Barebone_I2C_Pos\\src",
                 "C:\\Users\\madsr\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.8.5\\libraries\\SPI\\src",
                 "C:\\Users\\madsr\\Documents\\Arduino\\libraries\\mavlink",
                 "c:\\users\\madsr\\appdata\\local\\arduino15\\packages\\arduino\\tools\\avr-gcc\\7.3.0-atmel3.6.1-arduino7\\lib\\gcc\\avr\\7.3.0\\include",

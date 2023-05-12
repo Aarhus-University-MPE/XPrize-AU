@@ -7,7 +7,7 @@
 // #include <SPI.h>
 #include <Servo.h>
 #include <SoftwareSerial.h>
-#include <SparkFun_u-blox_GNSS_Arduino_Library.h>
+#include <Sparkfun_u-blox_Barebone_I2C_Pos.h>
 #include <Wire.h>
 #include <mavlink.h>
 
