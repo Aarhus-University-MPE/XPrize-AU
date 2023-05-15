@@ -16,10 +16,24 @@ const float R1 = 510;     // 510 kOhmn
 const float acdcFactor     = (5.0f / 1024.0f);
 const float voltageDividor = R2 / (R1 + R2);
 
-const float a3 = -65.595f;
-const float a2 = 3452.9f;
-const float a1 = -60503.0f;
-const float a0 = 352955.0f;
+#ifdef BATTERY_TYPE_NIMH
+const float a3            = -65.595f;
+const float a2            = 3452.9f;
+const float a1            = -60503.0f;
+const float a0            = 352955.0f;
+const float minBatVoltage = 16.97f;
+const float maxBatVoltage = 18.06f;
+const float voltageSag    = 1.2f;  // Voltage Sag under avg load
+#endif
+#ifdef BATTERY_TYPE_LIPO
+const float a3            = 5.3668f;
+const float a2            = -269.76f;
+const float a1            = 4543.8f;
+const float a0            = -25548.0f;
+const float minBatVoltage = 15.0f;  // 3.6 V per cell cutoff
+const float maxBatVoltage = 16.44f;
+const float voltageSag    = 0.0f;  // Voltage Sag under avg load
+#endif
 
 // Returns current battery level
 // Estimated with level = -65,595 x Voltage^3 + 3452,9 x Voltage^2 - 60503 x Voltage + 352955 (range 20-90 %)
@@ -27,8 +41,8 @@ uint8_t BatteryLevel() {
   float batteryVoltage = BatteryVoltage();
 
   // Check over/under charged
-  if (batteryVoltage < BATTERY_VOLTAGE_MIN) return 0;
-  if (batteryVoltage > BATTERY_VOLTAGE_MAX) return 100;
+  if (batteryVoltage < minBatVoltage) return 1;
+  if (batteryVoltage > maxBatVoltage) return 100;
 
   float batteryLevel = a3 * pow(batteryVoltage, 3) + a2 * pow(batteryVoltage, 2) + a1 * batteryVoltage + a0;
 
@@ -54,21 +68,4 @@ float BatteryVoltage() {
   analogReference(DEFAULT);  // Reset analog reference to default 5.0 voltage vMax
 
   return voltageBattery;
-}
-
-// Prints current battery level and voltage
-void BatteryPrint() {
-  DEBUG_PRINT(F("Battery Level: "));
-  DEBUG_PRINTLN(BatteryLevel());
-
-  DEBUG_PRINT(F("Battery Voltage: "));
-  DEBUG_PRINTLN(BatteryVoltage());
-}
-
-void StandbyMode() {
-  // LowPower.powerDown(SLEEP_FOREVER, ADC_OFF, BOD_OFF);
-}
-
-void wakeUp() {
-  // Just a handler for the pin interrupt.
 }

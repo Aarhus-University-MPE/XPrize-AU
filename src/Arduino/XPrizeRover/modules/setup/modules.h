@@ -5,6 +5,7 @@
 // #include <SD.h>
 #include <SFE_HMC6343.h>
 // #include <SPI.h>
+#include <LowPower.h>
 #include <Servo.h>
 #include <SoftwareSerial.h>
 #include <Sparkfun_u-blox_Barebone_I2C_Pos.h>

@@ -3,7 +3,7 @@
 
   Mads Rosenhøj Jeppesen
   Aarhus University
-  2021
+  2023
 */
 
 #pragma once
@@ -17,6 +17,7 @@ void PowerFlagProcess();
 void SystemEnableSecondary();
 void SystemDisableSecondary();
 bool GetSystemState();
+void StandbyMode(int8_t sleep);
 
 // Drivetrain
 void DriveTrainInitialize();

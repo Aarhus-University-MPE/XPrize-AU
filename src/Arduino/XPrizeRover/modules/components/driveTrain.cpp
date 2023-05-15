@@ -17,8 +17,10 @@ const uint8_t minSteer = 0;
 
 uint8_t lastSteer = 89;
 
-const float maxThrottleGain        = 1.0f;
-const uint8_t maxThrottleIncrement = 90 * maxThrottleGain;
+const float maxThrottleGainFwd        = 0.75f;  // To avoid jitter overshooting ESC throttle limit
+const float maxThrottleGainRev        = 0.70f;  // To avoid jitter overshooting ESC throttle limit
+const uint8_t maxThrottleIncrementFwd = 90 * maxThrottleGainFwd;
+const uint8_t maxThrottleIncrementRev = 90 * maxThrottleGainRev;
 
 unsigned long lastMillisSteer, lastMillisThrottle, lastMillisGear;
 
@@ -38,8 +40,11 @@ unsigned long lastMillisSteer, lastMillisThrottle, lastMillisGear;
 
 // Primary drive train process
 void DriveTrainProcess(int8_t throttle, int8_t steer, int8_t gear, int8_t headlights) {
+  throttle = constrain(throttle, -100, 100);
+  steer    = constrain(steer, -100, 100);
+
   uint8_t _steer    = map(steer, -100, 100, minSteer, maxSteer);
-  uint8_t _throttle = map(throttle, -100, 100, 90 - maxThrottleIncrement, 90 + maxThrottleIncrement);
+  uint8_t _throttle = map(throttle, -100, 100, 90 - maxThrottleIncrementRev, 90 + maxThrottleIncrementFwd);
 
   // Steering
   lastMillisSteer = ServoProcess(Steer, _steer, PP_STEER, lastSteer, lastMillisSteer);

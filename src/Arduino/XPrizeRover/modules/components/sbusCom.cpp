@@ -51,6 +51,10 @@ void SbusParse() {
 
   // Process Swapper controls
   SwapperProcess(swapSelect, arm, lid);
+
+  // Process Sleep controls
+  // int8_t sleep = getChannel(CHANNEL_SLEEP);
+  // StandbyMode(sleep);
 }
 
 void SbusProcess() {

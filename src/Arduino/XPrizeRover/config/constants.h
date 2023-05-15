@@ -78,16 +78,21 @@
 // ------------------------------------------------------------ //
 //                           SYSTEM                             //
 // ------------------------------------------------------------ //
-#define SystemVersion           "0.0.1"
+#define SystemVersion           "1.0.43"
+
+#define POWERFLAG_PERIOD        500  // milliseconds between power flag checks
+#define POWERFLAG_TOGGLE        400  // milliseconds after power flag has been toggled to enable/disable power
+
+#define POWER_DOWN_DURATION     3600    // Seconds powered down after (increments of 9)
+#define POWER_WAKE_DURATION     600000  // milliseconds to stay awake after a power down cycle
 
 // ------------------------------------------------------------ //
 //                         CONTROLLER                           //
 // ------------------------------------------------------------ //
 
+// SBUS
 #define SBUS_TIMEOUT            5000  // milliseconds
 #define SBUS_PERIOD             100   // milliseconds between SBUS updates
-#define POWERFLAG_PERIOD        500   // milliseconds between power flag checks
-#define POWERFLAG_TOGGLE        400   // milliseconds after power flag has been toggled to enable/disable power
 
 // Controller Channels
 #define CHANNEL_STEER           1  // Right Horizontal
@@ -105,15 +110,12 @@
 //                           BATTERY                            //
 // ------------------------------------------------------------ //
 
-#define BATTERY_VOLTAGE_MIN     16.97f  // Count as 0% when below this voltage
-#define BATTERY_VOLTAGE_MAX     18.06f  // Count as 100% when above this voltage
+// #define BATTERY_TYPE_NIMH       1
+#define BATTERY_TYPE_LIPO       1
 
 // ------------------------------------------------------------ //
 //                        COMMUNICATION                         //
 // ------------------------------------------------------------ //
-
-// DEBUG
-#define DEBUG_BAUDRATE          115200
 
 // Mavlink
 #define MAVLINK_BAUDRATE        115200
