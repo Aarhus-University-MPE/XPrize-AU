@@ -21,10 +21,10 @@ void PowerFlagProcess() {
   if (millis() - millisLastPowerFlagUpdate < POWERFLAG_PERIOD) return;
   millisLastPowerFlagUpdate = millis();
 
-  powerFlag = analogRead(PI_POWER_FLAG) > 800;
+  bool powerFlagRead = analogRead(PI_POWER_FLAG) > 800;
 
   // Check if current state matches powerFlag
-  if (powerFlag == digitalRead(PO_SYSTEM_EN)) {
+  if (powerFlagRead == digitalRead(PO_SYSTEM_EN)) {
     powerDetect = false;
     return;
   }
@@ -35,8 +35,10 @@ void PowerFlagProcess() {
     return;
   }
 
+  powerFlag = powerFlagRead;
+
   // Enable/Disable power
-  if (powerFlag) {
+  if (powerFlagRead) {
     SystemEnableSecondary();
   } else {
     SystemDisableSecondary();
@@ -57,12 +59,13 @@ void SystemEnablePrimary() {
 
 // Disable Secondary Systems
 void SystemDisableSecondary() {
-  digitalWrite(PO_SYSTEM_EN, false);
+  TerminateSecondaryPins();
+  digitalWrite(LED_BUILTIN, false);
 }
 
 // Enables Secondary Systems
 void SystemEnableSecondary() {
-  digitalWrite(PO_SYSTEM_EN, true);
+  InitSecondaryPins();
 
   // Wait for systems to boot up
   delay(500);

@@ -21,6 +21,7 @@ void loop() {
 
   // Check system online
   if (!GetSystemState()) return;
+  digitalWrite(LED_BUILTIN, true);
 
   // Process secondary system
   SbusProcess();

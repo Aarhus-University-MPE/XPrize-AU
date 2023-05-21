@@ -52,15 +52,15 @@
 // Mavlink
 #define MAVLINK_BAUDRATE        115200
 
-#define MAVLINK_PERIOD_GNSS     3000
-#define MAVLINK_PERIOD_GNSSDATA 3000
-#define MAVLINK_PERIOD_HRTBEAT  2000
-#define MAVLINK_PERIOD_BATTERY  2000
-#define MAVLINK_PERIOD_HEADING  3000
+#define MAVLINK_PERIOD_GNSS     2500
+#define MAVLINK_PERIOD_GNSSDATA 2500
+#define MAVLINK_PERIOD_HRTBEAT  1000
+#define MAVLINK_PERIOD_BATTERY  1000
+#define MAVLINK_PERIOD_HEADING  1000
 
 // Comment to disable MAVLink messages
 #define MAV_HEARTBEAT           1
 #define MAV_BATTERY             1
 #define MAV_GNSS                1
-#define MAV_GNSSDATA            1
-#define MAV_HEADING             1
+// #define MAV_GNSSDATA            1
+// #define MAV_HEADING             1

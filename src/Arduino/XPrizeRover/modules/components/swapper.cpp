@@ -12,7 +12,9 @@
 
 Servo lidServo, armServo;
 
-bool lidOpen = false;
+bool lidOpenL     = false;
+bool lidOpenR     = false;
+bool selectDetect = false;
 
 const uint8_t lidOpenPosLeft  = 37;
 const uint8_t lidOpenPosRight = 110;
@@ -39,7 +41,7 @@ void MoveLeftLid(bool openLid) {
     ServoProcess(lidServo, angle, PP_LID_LEFT);
   }
 
-  lidOpen = openLid;
+  lidOpenL = openLid;
 }
 
 // Open/Close Right lid
@@ -59,15 +61,15 @@ void MoveRightLid(bool openLid) {
     ServoProcess(lidServo, angle, PP_LID_RIGHT);
   }
 
-  lidOpen = openLid;
+  lidOpenR = openLid;
 }
 
 // Process Left Swapper commands
 void SwapperLeft(int8_t arm, int8_t lid) {
   // Lid Open/Close
-  if (lid < 50 && lidOpen) {  // Currently Open - Close
+  if (lid < 50 && lidOpenL) {  // Currently Open - Close
     MoveLeftLid(false);
-  } else if (lid > 50 && !lidOpen) {  // Currently Closed - Open
+  } else if (lid > 50 && !lidOpenL) {  // Currently Closed - Open
     MoveLeftLid(true);
   }
 
@@ -80,9 +82,9 @@ void SwapperLeft(int8_t arm, int8_t lid) {
 // Process Right Swapper commands
 void SwapperRight(int8_t arm, int8_t lid) {
   // Lid Open/Close
-  if (lid < 50 && lidOpen) {  // Currently Open - Close
+  if (lid < 50 && lidOpenR) {  // Currently Open - Close
     MoveRightLid(false);
-  } else if (lid > 50 && !lidOpen) {  // Currently Closed - Open
+  } else if (lid > 50 && !lidOpenR) {  // Currently Closed - Open
     MoveRightLid(true);
   }
 
@@ -97,6 +99,12 @@ void SwapperProcess(int8_t select, int8_t arm, int8_t lid) {
     digitalWrite(PP_ARM_RIGHT, true);
     digitalWrite(PP_LID_LEFT, true);
     digitalWrite(PP_LID_RIGHT, true);
+    selectDetect = false;
+    return;
+  }
+
+  if (!selectDetect) {
+    selectDetect = true;
     return;
   }
 

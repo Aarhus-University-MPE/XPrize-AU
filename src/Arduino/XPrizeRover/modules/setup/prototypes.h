@@ -13,6 +13,8 @@
 // System
 void (*systemReset)(void) = 0;
 void InitAllPins();
+void InitSecondaryPins();
+void TerminateSecondaryPins();
 void PowerFlagProcess();
 void SystemEnableSecondary();
 void SystemDisableSecondary();
