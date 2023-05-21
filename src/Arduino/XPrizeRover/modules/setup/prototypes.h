@@ -28,6 +28,8 @@ void DriveTrainProcess(int8_t throttle, int8_t steer, int8_t gear, int8_t headli
 void SwapperInitialize();
 void SwapperTerminate();
 void SwapperProcess(int8_t select, int8_t arm, int8_t lid);
+void MoveLeftLid(bool open);
+void MoveRightLid(bool openLid);
 
 // SBUS
 void SbusInitialize();
@@ -51,7 +53,10 @@ float GnssGetHeading();
 // IMU
 void ImuInitialize();
 void ImuTerminate();
+void ImuUpdate();
 float ImuHeading();
+float ImuPitch();
+float ImuRoll();
 
 // USB Comm
 bool DebugCommInitialize();
@@ -63,7 +68,7 @@ void BatteryPrint();
 
 // Servo Driver
 unsigned long ServoProcess(Servo &servo, uint8_t angle, uint8_t servoPin, uint8_t lastAngle, unsigned long lastMillis);
-void ServoProcess(Servo &servo, uint8_t angle, int servoPin);
+void ServoProcess(Servo &servo, uint8_t angle, int servoPin, uint8_t servoPeriod = 25);
 
 // SD Reader
 void SDReaderInitialize();

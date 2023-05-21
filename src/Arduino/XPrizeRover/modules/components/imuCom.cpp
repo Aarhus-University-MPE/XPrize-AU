@@ -16,25 +16,35 @@ SFE_HMC6343 compass;  // Declare the sensor object
 void ImuInitialize() {
   // Start I2C
   Wire.begin();
+  Wire.setClock(400000);
 
   if (!compass.init()) {
-    DEBUG_PRINTLN("HMC Failed to initialize");  // Report failure, is the sensor wiring correct?
   } else {
     compass.setOrientation(LEVEL);
     delay(1);  // 1 ms before sensor can receive commands after setting orientation
   }
 }
 
-void ImutCalibrate() {
-  compass.enterCalMode();
-  delay(1);
-  delay(60000);
-  compass.exitCalMode();
-  delay(50);
+void ImuUpdate() {
+  compass.readHeading();
 }
 
 // Return latest heading
 float ImuHeading() {
-  compass.readHeading();
-  return compass.heading;
+  float heading = (float)(compass.heading) / 10.0f;
+
+  // Rotate 90 degrees
+  if (heading + 90 > 360) {
+    heading -= 270;
+  } else {
+    heading += 90;
+  }
+  return heading;
+}
+
+float ImuPitch() {
+  return (float)(compass.roll) / 10.0f;
+}
+float ImuRoll() {
+  return (float)(compass.pitch) / 10.0f;
 }

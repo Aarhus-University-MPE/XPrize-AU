@@ -13,14 +13,13 @@
 
 #define PERIOD          200
 
-#define LID_OPEN_L      34
-#define LID_OPEN_R      110
+#define ANGLE_IDLE      90
+#define ANGLE_FWD       180
+#define ANGLE_REV       10
 
 unsigned long lastmillisCycle = 0;
 
 bool active = false;
-
-uint8_t state = 0;
 
 Servo lidLeft, lidRight, armLeft, armRight;
 
@@ -46,17 +45,37 @@ void loop() {
       digitalWrite(PO_SYSTEM_EN, true);
       digitalWrite(LED_BUILTIN, true);
       active = true;
-      delay(1000);
+      delay(250);
     }
 
-    MoveRightLid(true);
-    delay(1000);
-    MoveRightLid(false);
+    // for (size_t i = 0; i < 80; i++) {
+    //   SwingLeft(-1);
+    // }
+
+    // SwingLeft(0);
+    // delay(500);
+
+    // for (size_t i = 0; i < 80; i++) {
+    //   SwingLeft(1);
+    // }
+
+    // SwingLeft(0);
+    // delay(500);
+
+    for (size_t i = 0; i < 80; i++) {
+      SwingRight(-1);
+    }
+
+    SwingRight(0);
     delay(500);
-    MoveLeftLid(true);
-    delay(1000);
-    MoveLeftLid(false);
+
+    for (size_t i = 0; i < 80; i++) {
+      SwingRight(1);
+    }
+
+    SwingRight(0);
     delay(500);
+
   } else {
     digitalWrite(LED_BUILTIN, false);
     digitalWrite(PO_SYSTEM_EN, false);
@@ -74,39 +93,22 @@ void ServoProcess(Servo &servo, uint8_t angle, int servoPin) {
   servo.detach();
 }
 
-void MoveLeftLid(bool open) {
-  uint8_t angle;
-  int8_t angleIncrements;
-  angle = LID_OPEN_L;
-
-  if (open) {
-    angle += 90;
-    angleIncrements = -3;
+void SwingLeft(int8_t direction) {
+  if (direction == 0) {
+    ServoProcess(armLeft, ANGLE_IDLE, PP_ARM_LEFT);
+  } else if (direction > 0) {
+    ServoProcess(armLeft, ANGLE_REV, PP_ARM_LEFT);
   } else {
-    angleIncrements = 3;
-  }
-
-  for (size_t i = 0; i < 30; i++) {
-    angle += angleIncrements;
-    ServoProcess(lidLeft, angle, PP_LID_LEFT);
+    ServoProcess(armLeft, ANGLE_FWD, PP_ARM_LEFT);
   }
 }
 
-void MoveRightLid(bool open) {
-  uint8_t angle;
-  int8_t angleIncrements;
-
-  angle = LID_OPEN_R;
-
-  if (open) {
-    angle -= 90;
-    angleIncrements = 3;
+void SwingRight(int8_t direction) {
+  if (direction == 0) {
+    ServoProcess(armRight, ANGLE_IDLE, PP_ARM_RIGHT);
+  } else if (direction < 0) {
+    ServoProcess(armRight, ANGLE_REV, PP_ARM_RIGHT);
   } else {
-    angleIncrements = -3;
-  }
-
-  for (size_t i = 0; i < 30; i++) {
-    angle += angleIncrements;
-    ServoProcess(lidRight, angle, PP_LID_RIGHT);
+    ServoProcess(armRight, ANGLE_FWD, PP_ARM_RIGHT);
   }
 }

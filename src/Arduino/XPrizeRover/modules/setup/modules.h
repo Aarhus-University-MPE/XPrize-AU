@@ -29,7 +29,7 @@
 #include "../components/imuCom.cpp"
 #include "../components/pinconfigs.cpp"
 #include "../components/sbusCom.cpp"
-#include "../components/sdReader.cpp"
+// #include "../components/sdReader.cpp"
 #include "../components/servoDriver.cpp"
 #include "../components/swapper.cpp"
 #include "../components/telemetry.cpp"

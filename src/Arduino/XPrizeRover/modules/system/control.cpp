@@ -64,8 +64,11 @@ void SystemDisableSecondary() {
 void SystemEnableSecondary() {
   digitalWrite(PO_SYSTEM_EN, true);
 
-  ImuInitialize();
+  // Wait for systems to boot up
+  delay(500);
+
   // SDReaderInitialize();
+  ImuInitialize();
   SbusInitialize();
   TelemetryInitialize();
   GnssInitialize();

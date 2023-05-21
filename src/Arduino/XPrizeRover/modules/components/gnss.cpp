@@ -12,33 +12,43 @@
 
 SFE_UBLOX_GNSS gnss;
 
+int32_t lat, lon;
+uint8_t SIV, fixType;
+
 // Initialize GNSS module
 void GnssInitialize() {
   Wire.begin();
   Wire.setClock(400000);
-  // Wire.setWireTimeout(1000);
+  // Wire.setWireTimeout(10000);
   gnss.begin();
   gnss.setI2COutput(COM_TYPE_UBX);                  // Set the I2C port to output UBX only (turn off NMEA noise)
   gnss.setNavigationFrequency(1);                   // Set output to 5 times a second
   gnss.saveConfigSelective(VAL_CFG_SUBSEC_IOPORT);  // Save (only) the communications port settings to flash and BBR
 }
 
+void GnssUpdate() {
+  lat = gnss.getLatitude(10);
+  lon = gnss.getLongitude(10);
+  // SIV     = gnss.getSIV(10);
+  // fixType = gnss.getFixType(10);
+}
+
 // Gets positional data in Latitude in degrees * 10^-7
 int32_t GnssGetLat() {
-  return gnss.getLatitude(10);
+  return lat;
 }
 
 // Gets positional data in int32_titude in degrees * 10^-7
 int32_t GnssGetLong() {
-  return gnss.getLongitude(10);
+  return lon;
 }
 
 uint8_t GnssGetSIV() {
-  return gnss.getSIV(10);
+  return SIV;
 }
 
 uint8_t GnssGetFixType() {
-  return gnss.getFixType(10);
+  return fixType;
 }
 
 float GnssGetHeading() {

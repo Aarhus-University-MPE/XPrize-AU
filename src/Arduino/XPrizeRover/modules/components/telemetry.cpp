@@ -23,6 +23,8 @@ const uint8_t autopilot_type = MAV_AUTOPILOT_INVALID;
 uint8_t system_mode          = MAV_MODE_MANUAL_ARMED;
 uint8_t system_state         = MAV_STATE_STANDBY;
 
+mavlink_message_t msg;
+
 // Initialize Telemetry Communication
 void TelemetryInitialize() {
   SerialMAV.begin(MAVLINK_BAUDRATE);
@@ -33,10 +35,10 @@ void TelemetryTerminate() {
   SerialMAV.end();
 }
 
+uint8_t buf[MAVLINK_MAX_PACKET_LEN];
+
 // Broadcast mavlink message
 void sendMsg(mavlink_message_t* msg) {
-  uint8_t buf[MAVLINK_MAX_PACKET_LEN];
-
   // Copy message to send buffer
   uint16_t len = mavlink_msg_to_send_buffer(buf, msg);
 
@@ -48,7 +50,6 @@ void sendMsg(mavlink_message_t* msg) {
 bool MavHeartbeat() {
   if (millis() - millisMavHeartbeat < MAVLINK_PERIOD_HRTBEAT) return false;
   millisMavHeartbeat = millis();
-  mavlink_message_t msg;
 
   // Bundle and send data
   mavlink_msg_heartbeat_pack(sysid, compid, &msg, type, autopilot_type, system_mode, 0, system_state);
@@ -60,7 +61,6 @@ bool MavHeartbeat() {
 bool MavBattery() {
   if (millis() - millisMavBattery < MAVLINK_PERIOD_BATTERY) return false;
   millisMavBattery = millis();
-  mavlink_message_t msg;
 
   // Acquire battery data
   int16_t voltage     = BatteryVoltageInt();
@@ -77,9 +77,9 @@ bool MavBattery() {
 bool MavGnss() {
   if (millis() - millisMavGnss < MAVLINK_PERIOD_GNSS) return false;
   millisMavGnss = millis();
-  mavlink_message_t msg;
 
   // Acquire GNSS position data
+  GnssUpdate();
   int32_t lat = GnssGetLat();   // 1E7 degrees
   int32_t lon = GnssGetLong();  // 1E7 degrees
 
@@ -94,14 +94,16 @@ bool MavGnssData() {
   if (millis() - millisMavGnssData < MAVLINK_PERIOD_GNSSDATA) return false;
 
   millisMavGnssData = millis();
-  mavlink_message_t msg;
 
   // Acquire GNSS Data
   uint8_t fix_type           = GnssGetFixType();  // 0-1: no fix, 2: 2D, 3: 3D fix
   uint8_t satellites_visible = GnssGetSIV();
 
+  int32_t lat = GnssGetLat();   // 1E7 degrees
+  int32_t lon = GnssGetLong();  // 1E7 degrees
+
   // Broadcast GNSS signal data
-  mavlink_msg_gps_raw_int_pack(sysid, compid, &msg, 0, fix_type, 0, 0, 0, 65535, 65535, 0, 65535, satellites_visible);
+  mavlink_msg_gps_raw_int_pack(sysid, compid, &msg, 0, fix_type, lat, lon, 0, 65535, 65535, 0, 65535, satellites_visible);
   sendMsg(&msg);
   return true;
 }
@@ -110,14 +112,16 @@ bool MavGnssData() {
 bool MavHeading() {
   if (millis() - millisMavHeading < MAVLINK_PERIOD_HEADING) return false;
   millisMavHeading = millis();
-  mavlink_message_t msg;
 
   // Acquire heading data
-  // float heading = ImuHeading(); // TODO: Reimplement
-  float heading = GnssGetHeading();
+  ImuUpdate();
+  float heading = ImuHeading();
+  float pitch   = ImuPitch();
+  float roll    = ImuRoll();
+  // float heading = GnssGetHeading();
 
   // Broadcast IMU signal data
-  mavlink_msg_attitude_pack(sysid, compid, &msg, millis(), 0.0f, 0.0f, DEG_TO_RAD * heading, 0, 0, 0);
+  mavlink_msg_attitude_pack(sysid, compid, &msg, millis(), DEG_TO_RAD * roll, DEG_TO_RAD * pitch, DEG_TO_RAD * heading, 0, 0, 0);
   sendMsg(&msg);
   return true;
 }

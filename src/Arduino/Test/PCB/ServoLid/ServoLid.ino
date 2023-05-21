@@ -20,22 +20,22 @@ unsigned long lastmillisCycle = 0;
 
 bool active = false;
 
-uint8_t state = 0;
-
 Servo lidLeft, lidRight, armLeft, armRight;
 
 void setup() {
   pinMode(A7, INPUT);
+
+  digitalWrite(PP_ARM_RIGHT, false);
+  digitalWrite(PP_ARM_LEFT, false);
+  digitalWrite(PP_LID_LEFT, false);
+  digitalWrite(PP_LID_RIGHT, false);
+
   pinMode(PO_SYSTEM_EN, OUTPUT);
   pinMode(PO_AIRFILTER_EN, OUTPUT);
   pinMode(PP_ARM_RIGHT, OUTPUT);
   pinMode(PP_ARM_LEFT, OUTPUT);
   pinMode(PP_LID_LEFT, OUTPUT);
   pinMode(PP_LID_RIGHT, OUTPUT);
-  digitalWrite(PP_ARM_RIGHT, false);
-  digitalWrite(PP_ARM_LEFT, false);
-  digitalWrite(PP_LID_LEFT, false);
-  digitalWrite(PP_LID_RIGHT, false);
 }
 
 void loop() {

@@ -6,16 +6,17 @@
   2023
 */
 
-const uint8_t servoPeriod  = 25;
 const uint8_t servoTimeout = 200;
 
 // Process a servo signal for a fixed period
-void ServoProcess(Servo &servo, uint8_t angle, int servoPin) {
+void ServoProcess(Servo &servo, uint8_t angle, int servoPin, uint8_t servoPeriod = 25) {
   servo.attach(servoPin);
   servo.write(angle);
 
   delay(servoPeriod);
   servo.detach();
+
+  // digitalWrite(servoPin, false);  // TODO: reduce PWM cross bleed?
 }
 
 // Process a servo signal for a fixed period
@@ -31,13 +32,6 @@ unsigned long ServoProcess(Servo &servo, uint8_t angle, uint8_t servoPin, uint8_
   if (millis() - lastMillis > servoTimeout) {
     servo.detach();
   }
-
-  // Serial.begin(115200);
-  // Serial.print(angle);
-  // Serial.print("\t");
-  // Serial.println(lastAngle);
-  // Serial.end();
-  // SbusInitialize();
 
   return lastMillis;
 }

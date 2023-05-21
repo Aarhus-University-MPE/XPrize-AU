@@ -10,15 +10,17 @@
 
 #include "../setup/modules.h"
 
-Servo Throttle, Steer, Gear;
+// Servo Throttle, Steer, Gear;
+Servo Throttle, Steer;
 
-const uint8_t maxSteer = 180;
-const uint8_t minSteer = 0;
+const uint8_t maxSteer = 135;
+const uint8_t minSteer = 45;
 
 uint8_t lastSteer = 89;
 
-const float maxThrottleGainFwd        = 0.75f;  // To avoid jitter overshooting ESC throttle limit
-const float maxThrottleGainRev        = 0.70f;  // To avoid jitter overshooting ESC throttle limit
+const float maxThrottleGainFwd = 0.75f;  // To avoid jitter overshooting ESC throttle limit
+const float maxThrottleGainRev = 0.70f;  // To avoid jitter overshooting ESC throttle limit
+
 const uint8_t maxThrottleIncrementFwd = 90 * maxThrottleGainFwd;
 const uint8_t maxThrottleIncrementRev = 90 * maxThrottleGainRev;
 
