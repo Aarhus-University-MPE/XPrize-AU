@@ -74,21 +74,21 @@ void SystemEnableSecondary() {
   GnssInitialize();
 }
 
-// Sleep for x times 9 seconds, (rounded down)
-void SleepDuration(uint16_t seconds) {
-  uint16_t sleepCycles = seconds / 9;  // 8 sec sleep + 1 sec wakeup time
-  digitalWrite(LED_BUILTIN, true);
-  for (size_t i = 0; i < sleepCycles; i++) {
-    LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
-  }
-  lastMillisWake = millis();
-  digitalWrite(LED_BUILTIN, false);
-}
+// // Sleep for x times 9 seconds, (rounded down)
+// void SleepDuration(uint16_t seconds) {
+//   uint16_t sleepCycles = seconds / 9;  // 8 sec sleep + 1 sec wakeup time
+//   digitalWrite(LED_BUILTIN, true);
+//   for (size_t i = 0; i < sleepCycles; i++) {
+//     LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
+//   }
+//   lastMillisWake = millis();
+//   digitalWrite(LED_BUILTIN, false);
+// }
 
-void StandbyMode(int8_t sleep) {
-  if (sleep < 80) return;
-  if (millis() - lastMillisWake < POWER_WAKE_DURATION) return;
+// void StandbyMode(int8_t sleep) {
+//   if (sleep < 80) return;
+//   if (millis() - lastMillisWake < POWER_WAKE_DURATION) return;
 
-  SystemDisableSecondary();
-  SleepDuration(POWER_DOWN_DURATION);
-}
+//   SystemDisableSecondary();
+//   SleepDuration(POWER_DOWN_DURATION);
+// }
