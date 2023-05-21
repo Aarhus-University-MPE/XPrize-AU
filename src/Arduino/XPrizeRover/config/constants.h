@@ -62,5 +62,5 @@
 #define MAV_HEARTBEAT           1
 #define MAV_BATTERY             1
 #define MAV_GNSS                1
-// #define MAV_GNSSDATA            1
+#define MAV_GNSSDATA            1
 #define MAV_HEADING             1

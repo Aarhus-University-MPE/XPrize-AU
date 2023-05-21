@@ -62,9 +62,9 @@ void SbusProcess() {
   sbus.process();
 
   // Throttle SBUS updates too once per
-  if (millis() - millisLastSBusUpdate < SBUS_PERIOD) return;
+  // if (millis() - millisLastSBusUpdate < SBUS_PERIOD) return;
 
-  millisLastSBusUpdate = millis();
+  // millisLastSBusUpdate = millis();
 
   // Parse SBUS values to control variables
   SbusParse();
