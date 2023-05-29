@@ -58,3 +58,7 @@ float GnssGetHeading() {
   float heading = headingInt / 100000.0f;
   return heading;
 }
+
+uint32_t GetAccuracy() {
+  return gnss.getHorizontalAccuracy();
+}

@@ -36,5 +36,6 @@
         "src/Arduino/out/**": true,
         "**/LabVIEW/**": true,
         "**/KiCad/**": true
-    }
+    },
+    "C_Cpp.intelliSenseEngineFallback": "enabled"
 }

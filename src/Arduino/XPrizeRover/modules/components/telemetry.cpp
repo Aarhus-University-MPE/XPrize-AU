@@ -101,9 +101,10 @@ bool MavGnssData() {
 
   int32_t lat = GnssGetLat();   // 1E7 degrees
   int32_t lon = GnssGetLong();  // 1E7 degrees
+  uint16_t eph;                 ///< GPS HDOP horizontal dilution of position in cm (m*100). If unknown, set to: 65535
 
   // Broadcast GNSS signal data
-  mavlink_msg_gps_raw_int_pack(sysid, compid, &msg, 0, fix_type, lat, lon, 0, 65535, 65535, 0, 65535, satellites_visible);
+  mavlink_msg_gps_raw_int_pack(sysid, compid, &msg, 0, fix_type, lat, lon, 0, eph, 65535, 0, 65535, satellites_visible);
   sendMsg(&msg);
   return true;
 }
