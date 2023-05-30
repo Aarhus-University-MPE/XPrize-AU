@@ -21,6 +21,7 @@ void PowerFlagProcess() {
   if (millis() - millisLastPowerFlagUpdate < POWERFLAG_PERIOD) return;
   millisLastPowerFlagUpdate = millis();
 
+  // bool powerFlagRead = true;
   bool powerFlagRead = analogRead(PI_POWER_FLAG) > 800;
 
   // Check if current state matches powerFlag
@@ -74,6 +75,7 @@ void SystemEnableSecondary() {
   ImuInitialize();
   SbusInitialize();
   TelemetryInitialize();
+  ServoInitialize();
   GnssInitialize();
 }
 

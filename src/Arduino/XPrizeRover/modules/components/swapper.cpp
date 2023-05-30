@@ -38,7 +38,9 @@ void MoveLeftLid(bool openLid) {
 
   for (size_t i = 0; i < angleResolution; i++) {
     angle += angleIncrements;
-    ServoProcess(lidServo, angle, PP_LID_LEFT);
+    ServoProcess(PWM_CHANNEL_LID_L, angle);
+    // ServoProcess(lidServo, angle, PP_LID_LEFT);
+    delay(20);
   }
 
   lidOpenL = openLid;
@@ -58,7 +60,9 @@ void MoveRightLid(bool openLid) {
 
   for (size_t i = 0; i < angleResolution; i++) {
     angle += angleIncrements;
-    ServoProcess(lidServo, angle, PP_LID_RIGHT);
+    ServoProcess(PWM_CHANNEL_LID_R, angle);
+    // ServoProcess(lidServo, angle, PP_LID_RIGHT);
+    delay(20);
   }
 
   lidOpenR = openLid;
@@ -76,7 +80,8 @@ void SwapperLeft(int8_t arm, int8_t lid) {
   // Arm Process
   arm *= -1;  // reverse for left arm
   uint8_t armAngle = map(arm, -100, 100, angleRev, angleFwd);
-  ServoProcess(armServo, armAngle, PP_ARM_LEFT, 75);
+  ServoProcess(PWM_CHANNEL_ARM_L, armAngle);
+  // ServoProcess(armServo, armAngle, PP_ARM_LEFT, 75);
 }
 
 // Process Right Swapper commands
@@ -90,16 +95,16 @@ void SwapperRight(int8_t arm, int8_t lid) {
 
   // Arm Process
   uint8_t armAngle = map(arm, -100, 100, angleRev, angleFwd);
-  ServoProcess(armServo, armAngle, PP_ARM_RIGHT, 75);
+  ServoProcess(PWM_CHANNEL_ARM_R, armAngle);
+  // ServoProcess(armServo, armAngle, PP_ARM_RIGHT, 75);
 }
 
+// Process swapper control signals
 void SwapperProcess(int8_t select, int8_t arm, int8_t lid) {
   if (select < -50) {
-    digitalWrite(PP_ARM_LEFT, true);
-    digitalWrite(PP_ARM_RIGHT, true);
-    digitalWrite(PP_LID_LEFT, true);
-    digitalWrite(PP_LID_RIGHT, true);
     selectDetect = false;
+    if (lidOpenR) MoveRightLid(false);
+    if (lidOpenL) MoveLeftLid(false);
     return;
   }
 
@@ -110,14 +115,10 @@ void SwapperProcess(int8_t select, int8_t arm, int8_t lid) {
 
   // Left
   if (select > 50) {
-    digitalWrite(PP_ARM_RIGHT, true);
-    digitalWrite(PP_LID_RIGHT, true);
     SwapperLeft(arm, lid);
   }
   // Right
   else {
-    digitalWrite(PP_ARM_LEFT, true);
-    digitalWrite(PP_LID_LEFT, true);
     SwapperRight(arm, lid);
   }
 }

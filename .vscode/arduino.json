@@ -1,7 +1,7 @@
 {
     "board": "arduino:avr:nano",
     "sketch": "src\\Arduino\\XPrizeRover\\XPrizeRover.ino",
-    "port": "COM6",
+    "port": "COM9",
     "programmer": "AVR ISP",
     "output": "src/arduino/out",
     "configuration": "cpu=atmega328old"

@@ -71,6 +71,8 @@ void BatteryPrint();
 // Servo Driver
 unsigned long ServoProcess(Servo &servo, uint8_t angle, uint8_t servoPin, uint8_t lastAngle, unsigned long lastMillis);
 void ServoProcess(Servo &servo, uint8_t angle, int servoPin, uint8_t servoPeriod = 25);
+void ServoInitialize();
+void ServoProcess(uint8_t channel, uint8_t angle);
 
 // SD Reader
 void SDReaderInitialize();
