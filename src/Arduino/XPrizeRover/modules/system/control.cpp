@@ -61,7 +61,6 @@ void SystemEnablePrimary() {
 // Disable Secondary Systems
 void SystemDisableSecondary() {
   TerminateSecondaryPins();
-  digitalWrite(LED_BUILTIN, false);
 }
 
 // Enables Secondary Systems

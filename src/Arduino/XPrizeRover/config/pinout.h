@@ -35,10 +35,10 @@
 #define PP_LID_RIGHT         9
 
 // PWM Channels
-#define PWM_CHANNEL_ARM_R    0
-#define PWM_CHANNEL_ARM_L    1
-#define PWM_CHANNEL_LID_L    2
-#define PWM_CHANNEL_LID_R    3
+#define PWM_CHANNEL_LID_L    0
+#define PWM_CHANNEL_LID_R    1
+#define PWM_CHANNEL_ARM_L    2
+#define PWM_CHANNEL_ARM_R    3
 #define PWM_CHANNEL_GEAR     4
 #define PWM_CHANNEL_STEER_L  5
 #define PWM_CHANNEL_STEER_R  6

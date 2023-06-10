@@ -116,10 +116,10 @@ bool MavHeading() {
 
   // Acquire heading data
   ImuUpdate();
-  float heading = ImuHeading();
+  // float heading = ImuHeading();
   float pitch   = ImuPitch();
   float roll    = ImuRoll();
-  // float heading = GnssGetHeading();
+  float heading = GnssGetHeading();
 
   // Broadcast IMU signal data
   mavlink_msg_attitude_pack(sysid, compid, &msg, millis(), DEG_TO_RAD * roll, DEG_TO_RAD * pitch, DEG_TO_RAD * heading, 0, 0, 0);

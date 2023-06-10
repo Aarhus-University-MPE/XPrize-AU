@@ -29,7 +29,7 @@ void DriveTrainProcess(int8_t throttle, int8_t steer, int8_t gear, int8_t headli
 // Swapper
 void SwapperInitialize();
 void SwapperTerminate();
-void SwapperProcess(int8_t select, int8_t arm, int8_t lid);
+void SwapperProcess(int8_t select, int8_t arm, int8_t lid, int8_t airFilter);
 void MoveLeftLid(bool open);
 void MoveRightLid(bool openLid);
 
@@ -72,7 +72,8 @@ void BatteryPrint();
 unsigned long ServoProcess(Servo &servo, uint8_t angle, uint8_t servoPin, uint8_t lastAngle, unsigned long lastMillis);
 void ServoProcess(Servo &servo, uint8_t angle, int servoPin, uint8_t servoPeriod = 25);
 void ServoInitialize();
-void ServoProcess(uint8_t channel, uint8_t angle);
+void ServoProcess(uint8_t channel, uint8_t angle, int8_t extended = 0);
+void DisableServo(uint8_t channel);
 
 // SD Reader
 void SDReaderInitialize();

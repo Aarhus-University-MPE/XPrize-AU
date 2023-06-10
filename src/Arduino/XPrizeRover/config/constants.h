@@ -13,7 +13,7 @@
 // ------------------------------------------------------------ //
 //                           SYSTEM                             //
 // ------------------------------------------------------------ //
-#define SystemVersion           "1.0.96"
+#define SystemVersion           "1.1.13"
 
 #define POWERFLAG_PERIOD        500  // milliseconds between power flag checks
 
@@ -35,7 +35,7 @@
 #define CHANNEL_SWAPPER_SELECT  5  // A or D Short press, reset with B Short Press
 #define CHANNEL_SWAPPER_LID     6  // CAM (Trigger) Short press
 #define CHANNEL_GEAR            7  // C Long Press
-#define CHANNEL_SLEEP           8  // Home Long Press
+#define CHANNEL_AIRFILTER       8  // Home Long/Short Press
 #define CHANNEL_HEADLIGHTS      9  // C Short Press
 
 // ------------------------------------------------------------ //
